@@ -21,6 +21,13 @@ public class Student {
 	@ManyToMany(mappedBy="student")
 	private List<Laptop> laptop = new ArrayList<Laptop>();
 	
+	@Override
+	public String toString() {
+		return "Student [rollno=" + rollno + ", name=" + name + ", marks=" + marks + ", laptop=" + laptop + "]";
+	}
+	public void setLaptop(List<Laptop> laptop) {
+		this.laptop = laptop;
+	}
 	public List<Laptop> getLaptop() {
 		return laptop;
 	}
