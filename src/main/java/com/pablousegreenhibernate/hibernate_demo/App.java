@@ -30,12 +30,15 @@ public class App
     	lap.setLid(101);
     	lap.setLname("Dell");
     	
+    	
     	Student student = new Student();
     	student.setRollno(1);
     	student.setName("Marco");
     	student.setMarks(50);
-    	student.setLaptop(lap);
+    	student.getLaptop().add(lap);
+    	lap.setStudent(student);
     	
+    	//other way to configure entities are : new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
         Configuration conf = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class);
         ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(conf.getProperties()).buildServiceRegistry();
         SessionFactory sf = conf.buildSessionFactory(reg);
