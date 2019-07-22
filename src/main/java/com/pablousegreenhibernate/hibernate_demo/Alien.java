@@ -12,7 +12,7 @@ public class Alien {
 	@Column(name="aid")
 	private int aid;
 	@Column(name="aname")
-	private String aname;
+	private AlienName aname;
 	@Column(name="color")
 	private String color;
 	
@@ -22,14 +22,16 @@ public class Alien {
 	public void setAid(int aid) {
 		this.aid = aid;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "Alien [aid=" + aid + ", aname=" + aname + ", color=" + color + "]";
 	}
-	public String getAname() {
+	public AlienName getAname() {
 		return aname;
 	}
-	public void setAname(String aname) {
+	public void setAname(AlienName aname) {
 		this.aname = aname;
 	}
 	public String getColor() {

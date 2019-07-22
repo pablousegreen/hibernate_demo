@@ -16,10 +16,15 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
+        AlienName aname = new AlienName();
+        aname.setFname("Lopez");
+        aname.setLname("Ruiz");
+        aname.setMname("Ximena");
+        
         Alien alien = new Alien();
-        alien.setAid(4);
-        alien.setAname("raul");
-        alien.setColor("purple");
+        alien.setAid(6);
+        alien.setAname(aname);
+        alien.setColor("yellow");
         
         Configuration conf = new Configuration().configure().addAnnotatedClass(Alien.class);
         
@@ -29,9 +34,9 @@ public class App
         Session session = sf.openSession();
         
         Transaction tr = session.beginTransaction();
-        //session.save(alien); for new Insert object entity
-        alien = (Alien)session.get(Alien.class, 1);  // for getting a specific object
-        tr.commit();
-        System.out.println(alien);
+        session.save(alien); //for new Insert object entity
+        //alien = (Alien)session.get(Alien.class, 1);  // for getting a specific object
+        tr.commit();	
+//        System.out.println(alien);
     }
 }
