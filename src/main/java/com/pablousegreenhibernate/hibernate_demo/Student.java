@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity(name="student")
 public class Student {
@@ -16,9 +16,10 @@ public class Student {
 	private int marks;
 //	@OneToOne
 //	private Laptop laptop;
-	@OneToMany(mappedBy="student")
+//	@OneToMany(mappedBy="student")
+//	private List<Laptop> laptop = new ArrayList<Laptop>();
+	@ManyToMany(mappedBy="student")
 	private List<Laptop> laptop = new ArrayList<Laptop>();
-	
 	
 	public List<Laptop> getLaptop() {
 		return laptop;

@@ -36,7 +36,8 @@ public class App
     	student.setName("Marco");
     	student.setMarks(50);
     	student.getLaptop().add(lap);
-    	lap.setStudent(student);
+//    	lap.setStudent(student); //for ManyToOne
+    	lap.getStudent().add(student); //for ManyToMany
     	
     	//other way to configure entities are : new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
         Configuration conf = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class);
