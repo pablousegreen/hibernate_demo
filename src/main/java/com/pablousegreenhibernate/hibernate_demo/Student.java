@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
 @Entity(name="student")
@@ -18,21 +20,19 @@ public class Student {
 //	private Laptop laptop;
 //	@OneToMany(mappedBy="student")
 //	private List<Laptop> laptop = new ArrayList<Laptop>();
-	@ManyToMany(mappedBy="student")
-	private List<Laptop> laptop = new ArrayList<Laptop>();
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name = "lid", updatable = false, insertable = false, nullable = true)
+	private List<Laptop> laptops = new ArrayList<Laptop>();
 	
 	@Override
 	public String toString() {
-		return "Student [rollno=" + rollno + ", name=" + name + ", marks=" + marks + ", laptop=" + laptop + "]";
+		return "Student [rollno=" + rollno + ", name=" + name + ", marks=" + marks + ", laptops=" + laptops + "]";
 	}
-	public void setLaptop(List<Laptop> laptop) {
-		this.laptop = laptop;
+	public List<Laptop> getLaptops() {
+		return laptops;
 	}
-	public List<Laptop> getLaptop() {
-		return laptop;
-	}
-	public void setLaptos(List<Laptop> laptop) {
-		this.laptop = laptop;
+	public void setLaptops(List<Laptop> laptops) {
+		this.laptops = laptops;
 	}
 	public int getRollno() {
 		return rollno;

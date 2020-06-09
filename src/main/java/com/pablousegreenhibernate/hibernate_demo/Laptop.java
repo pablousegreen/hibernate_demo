@@ -1,10 +1,20 @@
 package com.pablousegreenhibernate.hibernate_demo;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-@Entity
+import org.hibernate.FetchMode;
+import org.hibernate.annotations.Fetch;
+
+@Entity(name="laptop")
 public class Laptop {
 	
 	@Id
@@ -12,12 +22,16 @@ public class Laptop {
 //	private String lname;
 //	@ManyToOne
 //	private Student student;
-//	@ManyToMany
-//	private List<Student> student = new ArrayList<Student>();
 	private String brand;
 	private int price;
+	@Column(name = "rollno")
+	private Integer rollno;
 	@ManyToOne
 	private Alien alien;
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinColumn(name = "rollno", updatable = false, insertable = false, nullable = true)
+	private List<Student> students = new ArrayList<Student>();	
+	
 	public int getLid() {
 		return lid;
 	}
@@ -42,7 +56,12 @@ public class Laptop {
 	public void setAlien(Alien alien) {
 		this.alien = alien;
 	}
-	
+	public List<Student> getStudents() {
+		return students;
+	}
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
 	
 
 }
